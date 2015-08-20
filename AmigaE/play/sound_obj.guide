@@ -1,0 +1,154 @@
+@database 0041d168-0
+@master HeddleyCreation
+@$VER: 1.0
+@remark Created with Heddley v1.1 (c) Edd Dumbill 1994
+
+@node "Main" "No title"
+ sound.m
+ -------
+
+   This is an E object for loading/playing sounds.  It can load/play 8SVX
+and RAW sounds under OS 2.0, and under OS 3.0 it will use the datatypes
+library to play sounds from any datatype you have.
+
+@{"Members" link "Members" 0}
+
+@{"Methods" link "Methods" 0}
+
+@{"Author" link "Author" 0}
+
+
+
+
+
+ Disclaimer
+ ----------
+   I take no responsibility for anything.
+
+ Distribution
+ ------------
+   I don't even care.  It would be nice if my name as the author was
+mentioned at least once in the archive
+@endnode
+
+@node "Members" "Members"
+ OBJECT sound
+ ------------
+
+   filename:PTR TO CHAR
+      Filename of file to play.  Not yet used nor needed, but will be for
+asyncronous loading/playing.
+
+   type:LONG
+      Type ID.  Will be one of:
+      "DTYP" if it was imported using datatypes
+      "8SVX" if it was imported as an 8SVX
+      "RAW"  if it was imported as a RAW
+
+   data:PTR TO CHAR
+      Sample data.  Is filled by load(), but if you have your data
+internally, then just point this to your data, and set the length
+appropriately.
+
+   length:LONG
+      Length of cample data.  If length > 131072 then it will be
+truncated. If I receive requests to add code to compensate for this, then
+I will do it, otherwise, I don't care.  The reason is due to the limits of
+the audio.device (It's not my own sadistic thing.)
+      Note: length MUST be even, but if you're importing a sound, then
+whatever wrote it will have already made sure of this.
+
+   period:LONG
+      Period of sample.  To convert rate to period, you can use the
+provided @{"rate2period()" link "rate2period" 0} function.  To convert the other way, use
+@{"period2rate()" link "period2rate" 0}.  Also, the @{"rate()" link "rate" 0} method will get/set the rate for you as
+well.
+
+   volume:INT
+      Volume of sample.  Must be between 0 and 64.
+
+   cycles:INT
+      Number of times to repeat sample.  0 to repeat until you @{"stop()" link "stop" 0} the
+sound.
+@endnode
+
+@node "Methods" "Methods"
+ Methods
+ -------
+
+      Basic Function
+      --------------
+   @{"load(fname, flags=NIL)" link "load" 0}
+   @{"play(channel, wait=NIL)" link "play" 0}
+   @{"stop(channel)" link "stop" 0}
+   @{"wait(channel)" link "wait" 0}
+   @{"end()" link "end" 0}
+
+      Bonus Methods
+      -------------
+   @{"sigbit(channel)" link "sigbit" 0}
+   @{"sigbits()" link "sigbits" 0}
+   @{"rate(rate=NIL)" link "rate" 0}
+   @{"pervol()" link "pervol" 0}
+
+      Auxiliary Functions (not methods)
+      ---------------------------------
+   @{"rate2period(rate)" link "rate2period" 0}
+   @{"period2rate(period)" link "period2rate" 0}
+@endnode
+
+@node "Author" "Author"
+ Dobes Vandermeer
+ ----------------
+ dobes@prcn.org    -> Probably only
+                      until Sept. 1997.
+@endnode
+
+@node "stop" "stop()"
+
+@endnode
+
+@node "rate" "rate()"
+
+@endnode
+
+@node "rate2period" "rate2period()"
+
+@endnode
+
+@node "period2rate" "period2rate()"
+
+@endnode
+
+@node "load" "load(fname, flags=NIL)"
+
+@endnode
+
+@node "play" "play(channel, wait=NIL)"
+
+@endnode
+
+@node "wait" "wait(channel)"
+
+@endnode
+
+@node "end" "end()"
+
+@endnode
+
+@node "sigbit" "sigbit(channel)"
+
+@endnode
+
+@node "sigbits" "sigbits()"
+
+@endnode
+
+@node "rate" "rate(rate=NIL)"
+
+@endnode
+
+@node "pervol" "pervol()"
+
+@endnode
+

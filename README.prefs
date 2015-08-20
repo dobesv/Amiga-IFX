@@ -1,0 +1,29 @@
+
+*** A NOTE ABOUT THE PREFS EDITOR ***
+
+Since I hardly use the prefs editor, I haven't been updating it. So
+when you use it, it will probably destroy your configuration files,
+by removing the "chimes" and "include" entries.
+
+This might cause some trouble, if you used those tags.
+
+Because of this flaw, I am currently (slowly) re-writing the prefs editor
+to support many config files, chimes options, setting the tooltypes, and
+other stuff.  It might be done before easter (if you're lucky).
+
+Although obsolete, you can still use the prefs editor, and it is included,
+but you have to copy it to SYS:Prefs manually.
+
+I strongly recommend using a text editor to edit your IFX.ids file.  You'll
+hardly ever need to change it anyway, but you get so much more flexibility
+with a text editor, because you can divide your sound into little packages
+and directories and stuff.
+
+If you are a programmer, I have included the sources for the prefs program
+(in E).  Please re-write it to support the new tags; I will be forever
+indebted to you, because I just can't get into GUI creation on the Amiga.
+It is just revolting having to use MUI or ClassAct, and GadTools is obviously
+inadequate as well.
+
+Thank you for using IFX!
+

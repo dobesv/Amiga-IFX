@@ -1,0 +1,4 @@
+.key ECARGS
+ec sound <ECARGS>
+flushcache
+ec play <ECARGS>

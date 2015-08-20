@@ -1,0 +1,696 @@
+@database 00288e68-0
+@master src:ifx/IFX.guide
+@$VER: 2.38
+@author "Dobes Vandermeer"
+@(c) "1997 by Dobes Vandemeer"
+@font topaz.font 8
+@index Main
+@remark Created with Heddley v1.1 (c) Edd Dumbill 1994
+@remark Modified by Dobes Vandermeer, using ProgEd
+
+@node "Main" "Main Menu"
+@next "Introduction"
+
+
+                  *** **** * *  *****
+                   *  *     *    * *
+                   *  **    *    * *
+                  *** *    * *  *****
+
+ http://deathsdoor.com/dobes
+
+ -------------------------------------------------------------
+ IFX V2.38       @{" Introduction             " link "Introduction" 0} © by Dobes Vandermeer
+ ~~~~~~~~~       @{" The Prefs Editor         " link "PrefsEditor" 0} ~~~~~~~~~~~~~~~~~~~~~
+                 @{" Configuration            " link "Configuration" 0}   (12.11.97)
+                 @{" The IDs                  " link "ids_list" 0}
+                 @{" The Volume Knob          " link "volume_knob" 0}
+                 @{" IFX Sound Commenter      " link "IFXNote" 0}
+                 @{" Installation             " link "Installation" 0}
+                 @{" Free Registration        " link "Registration" 0}
+                 @{" Programmers' Corner      " link "Programmers" 0}
+                 @{" Disclaimer and Copyright " link "Disclaimer" 0}
+                 @{" Bugs and Todo            " link "Bugs" 0}
+                 @{" Author                   " link "Author" 0}
+ ------------------------------------------------------------
+
+ Check out the IFX sound commenter!
+ There is now a second parameter to SOUND and PSOUND; cycles!
+
+@endnode
+
+@node "IFXNote" "IFX Sound Commenter"
+
+ IFXNote
+ =======
+
+  Included is the command IFXNote.  Just run it (or click on it)
+and it will add a comment to every sound file in IFX.ids or any
+ids file INCLUDE'd in it.
+  It doesn't take any parameters, or anything, but it does the
+job. It may have some bugs, like leaving directories locked, I'm
+not sure.  You probably won't use it THAT often anyway...
+ Enjoy!
+ 
+
+@endnode
+
+@node "volume_knob" "Volume Control"
+@next "Installation"
+@prev "ids_list"
+
+ Introduction
+ ------------
+
+  Francis Labrie sent me a message asking me about Volume controls, and
+mentioned that he had made a quick volume knob for his machine using
+MUIRexx.  I thought this was a cool idea, so I asked him for it, and
+he sent it to me, and now it's part of the package.
+
+ Requirements
+ ------------
+  - MUIRexx
+  - RexxDosTools
+
+  These are both available from my site (for your convenience) or from
+  AmiNet.
+
+ Installation
+ ------------
+  Drag it to anywhere on your hard drive.
+
+ Usage
+ -----
+  Click on the icon.
+
+ Configuration
+ -------------
+  To change and save the position:
+   - click on "VolumeBorder",
+   - Go to MUI Prefernces in the menu
+   - Click on "Windows"
+   - Where it says "Positions", change it to "save on exit"
+   - Close MUI Preferences
+   - Drag the volume window where you like
+   - Choose quit in the menu
+
+ Bugs & Problems
+ ---------------
+  You can't put the window against the edge of the screen, without editing the
+AREXX script yourself, because the border gets in the way.  Live with it.
+
+
+@endnode
+
+@node "Introduction" "Introduction"
+@next "PrefsEditor"
+@prev "Main"
+
+ Introduction
+ ------------
+
+   IFX, short for Input Effects, is a replacement for UPD (Universal 
+Playing Daemon).  It's intended purpose is that it plays sounds, based 
+on events sent to it by other applications,  such as ARQ. Some 
+features are:
+
+   
+  o IFX uses datatypes under 3.0+ systems, so almost any sound format  
+    is supported.
+
+  o IFX can play two sounds at once, so sounds will not be "cut  
+    off" as often, and when they are, it won't sound so bad...
+
+  o IFX generates some of it's own events, such as for windows  
+    opening and closing.
+
+  o IFX generates it's sounds at a low priority, so your other 
+    applications' (HippoPlayer, etc.) sounds won't be interrupted.
+
+  o IFX can execute programs or run other effects in place of playing 
+    a sound.
+
+
+   IFX also has most of the features of UPD, including:
+
+  o Selects a random event where more than one is available.
+
+  o Generates many nice events for requesters when ARQ is installed.
+
+  o Will use the amiga's internal voice instead of a sound
+
+   IFX has some disadvantages over UPD, though, such as:
+
+  o Doesn't play the sounds as it loads them; there is a small delay 
+    between the event and the sound, unless the sound is pre-loaded.
+
+ Requirements
+ ------------
+   Amiga OS 2.0 or greater
+   68000 or greater processor
+   The volume knob also requires MUIRexx
+
+
+@endnode
+
+@node "PrefsEditor" "The Prefs Editor"
+@next "Configuration"
+@prev "Introduction"
+
+ IFX Preferences
+ ---------------
+
+   The IFX Preferences editor was created for editing the ids list for 
+IFX.  It's interface is relatively simple to use.
+
+   The prefs editor will start out with a list of IDs. Each id 
+represents a set of "Actions." When a certain ID is invoked, one of 
+it's actions will be ran domly selected and run. By clicking 
+on an ID, you can edit its actions. The "Add ID" button will create a 
+new ID. "Save" will save the current list and exit, while "Cancel" will 
+exit without saving.
+
+   Note that each ID can invoked by sending an AREXX command 'id <idname>' 
+to the port "PLAY," or by using the command "Effect", which takes the 
+single argument of an ID name. Some programs also generate their own 
+IDs. See @{"IDs" link "ids_list" 0} for more info.
+
+   
+   When you are editing an ID (after selecting it from the first display) 
+you will be given a list of actions. Each action is only displayed by its 
+info string, which is either a filename, command line, or ID. By 
+selecting an Action, you can edit what action it performs. The string 
+gadget below the list view allows you to change the name of the ID. 
+This is most useful only for creating new IDs. If you select "Remove 
+this ID" you will be prompted "Are you sure?", and if you pick 
+"Yes," the ID and all its actions will be deleted. If you select "Keep 
+this," the settings will be kept, and you will be returned to the original  
+interface.
+
+   The Action editing interface is the most simple. The cycle gadget 
+at the top picks what type of action will be performed. There are 
+four types currently supported:
+
+   "Nothing"         - Do nothing (give some descriptive string)
+   "Sound"           - Load and play the sound file described (give filename)
+   "Preloaded Sound" - Loads the sound early and stores it in memory
+   "Speech"          - Uses amiga's "voice" to talk (give string)
+   "Message"         - Pop up a requester with a little note
+   "Command" - Execute the command line described (give commandline)
+   "Other ID"        - Run the described ID's action instead (give id name)
+   "Task Exclusion"  - Exclude the given task pattern from Window/Sound effects
+
+   IMPORTANT NOTES:
+   If you set two ID's to point to each other (only) you will 
+probably crash the computer.
+   Please don't enter quotes in your strings; it will produce unpredictable
+behaviours.
+   For task exclusions, standard DOS wildcards will be correctly processed.
+   Preloaded sounds will fill up your chip memory, so use them only for 
+sounds that play OFTEN and are SMALL.  (unless you have too much memory...) 
+:)
+   The preferences editor often crashes when you save; you have to quit
+the IFX daemon to prevent this.
+   
+The string gadget describes the action, and its contents depend on the 
+type. If you select the "File..." button, you will b given an ASL file 
+requester allowing you to select a file of your choice to be entered into 
+the string gadget. The "test" button will allow you to test the results 
+of an action to make sure it will work as needed. Selecting "Okay" will 
+take you back to the ID editor, and "Delete Action" will remove this action 
+from existence.
+@endnode
+
+@node "Configuration" "Configuration"
+@next "ids_list"
+@prev "PrefsEditor"
+
+ Configuration
+ -------------
+
+      ENVIRONMENT
+      ===========
+
+   You can now set the volume that IFX will play sounds at!
+   In a CLI, type:
+
+   setenv IFXVOLUME <volume>
+
+   Replace <volume> with a number between 0 and 64, and IFX will then play all sounds
+at that volume.  You can also use the environment variable VOLUME, which IFX will look
+for if IFXVOLUME hasn't been set
+
+   Here is a quick example:
+
+   setenv VOLUME 32      ; Set IFX's volume (and maybe other programs' volume) to half
+   setenv IFXVOLUME 0    ; Set IFX's volume to silent (Probably not other programs)
+   del ENV:IFXVOLUME     ; Return IFX's volume to half (will now use VOLUME)
+   copy ENV:VOLUME ENVARC: ; Store VOLUME for next bootup
+
+   For those of you who like HEX, you can also use hex numbers, like:
+
+   setenv VOLUME $40   ; Set volume to full
+   setenv VOLUME $20   ; Set volume to half
+
+      TOOLTYPES
+      =========
+   Note:  All tooltypes can be overridden by the settings file
+
+   Add CHIMES=YES in the icon tooltypes to enable chiming the hour with 
+hourly_chime, instead of just one chime.
+
+   You can now your favorite sounds dir from the icon.  Just use: 
+SOUNDSDIR=<path>.  Note that this will be over-ridden by the 
+DEFPREFSDIR entry in IFX.ids.
+
+   You can load an extra prefs file by setting the PREFS tooltype:
+
+PREFS=S:OtherIDS.ids
+
+   Note that s:IFX.ids will still be loaded regardless of whether the
+PREFS tooltype is present or not.
+
+
+      IDs FILE
+      ========
+
+   Since the Prefernces editor is really limited (I really don't like writing
+GUI's), you can (and should) edit the ids files yourself.
+   The first file IFX loads is stored in S: (scripts), and is very similar
+to, say, an AmigaDOS script.  Each line is a command, followed by parameters.
+
+  Defining IDs
+  ------------
+
+   <TYPE> <ID> <DATA> <CYCLES>     (seperated by spaces)
+
+   Any of ID or DATA should have quotes around it if it has spaces inside 
+it.
+
+   TYPE: The type of event, can be:
+      Other   = DATA contains another ID that you should run
+      Sound   = DATA is the name of a file to load and play
+      PSound  = Same as "Sound" but load right now, rather than at the
+                last minute.
+      Speech  = DATA is a string to "say" using Amiga's voice
+      Exec    = DATA contains a command string to execute
+      Message = DATA is a message to tell you
+      Nothing = Do nothing, mostly useful for random selection
+
+   ID: A unique id. If more than one effect is defined with the same ID, then IFX  w ill randomly select one of the effects. It is generally a good idea to  keep all the effects for an ID similar, to avoid confusion, but it is, of  course, your choice.
+
+   DATA: Depends on the TYPE above.
+
+   CYCLES: (number) Number of times to repeat any SOUND or PSOUND.
+
+   Task Exclusion
+   --------------
+
+EXCLUDE <Task Pattern>
+
+   Quotes are again acceptable.  The pattern is the same as a standard 
+DOS filepattern.  If you don't know DOS filepatterns, then just remember 
+that #?<string>#? will get all strings with <string> inside them. For 
+example, I like to use "EXCLUDE blitz#?" to exclude blitzblanker.
+
+   One useful trick is to put EXCLUDE ~(Workbench) if you only want
+window sounds for Workbench windows.
+
+   Chiming
+   -------
+
+   Chiming means that on the hour, IFX will play the "hourly_chime"
+sound a number of times equal to the hour.  This only counts for 
+sounds, and it plays the same sound for each chime.
+
+   You can enable chiming by putting the CHIMES command at the 
+beginning of any line, e.g.:
+
+# Enable chimes
+CHIMES
+
+   You can also disable chimes (this overrides the icon's chimes=yes)
+
+# Disable chimes
+NOCHIMES
+
+   Easier Directories
+   ------------------
+
+   Finally, to avoid punching in all those long filepaths, you can select 
+a default directory for IFX to look in:
+
+DEFPREFSDIR <dirpath>
+
+   That way you can copy all your sounds to the same directory, and only 
+type in the relative filepath.
+
+   Multiple Config files
+   ---------------------
+
+   It is now possible to divide that huge file full of sounds into many smaller
+files!  Exciting, eh?  Use:
+
+CONFIG <filepath>
+
+to load the file described by <filepath> as if it were IFX.ids.  Future sound packs
+will probably use this feature to add themselves.  You would see:
+
+DEFPREFSDIR Sounds:Cartoon
+CONFIG IFX.ids
+
+This would load the IFX.ids in Sounds:Cartoon, because CONFIG is relative to
+defprefsdir.
+
+   Comments
+   --------
+
+   Any line beginning with an unknown type will be considered a 
+comment, and  therefore ignored. This is handy, because you can 
+use whatever form of comment you like!
+
+
+@endnode
+
+@node "ids_list" "The IDs"
+@next "Programmers"
+@prev "Configuration"
+
+ The IDs
+ -------
+
+   IDs generated by IFX:
+
+ open_window       - every time a window is opened
+ close_window      -   "     "  "    "    " closed
+ window_resize     -   "     "  "    "    " resized
+ window_move       -   "     "  "    "    " moved
+ window_movesize   -   "     "  "    "    " moved AND resized (uncommon!)
+ open_screen       - when a screen is opened
+ close_screen      - when a screen is closed
+ disk_removed      - when a disk is removed
+ disk_inserted     -  "   "  "   "  inserted
+ beep              - for beep replacement
+ hourly_chime      - Chime that goes every hour
+ quarterly_chime   - Chime for the three quarters of the hour
+
+   IDs generated by ARQ Requesters:
+
+ warn_write_protected  - Volume is write protected
+ warn_insert_volume    - Please insert volume X
+ warn_delete           - WB "Are you sure you want to delete these?"
+ warn_printer          - Printer Trouble
+ error_task_held       - Guru requester
+ error_read_write      - Volume has a read/write error
+ error_general         - Misc. errors
+ warn_general          - General warnings
+ query_general         - General queries
+
+   Some ID's for IFX's operation
+ ifx_kill               - Played on exit
+ ifx_enable             - IFX activated
+ ifx_disable            - IFX disabled
+ ifx_appear             - "Show" button pressed (in Exchange)
+ ifx_disappear          - "Hide" button pressed (in Exchange)
+
+   IDs I recommend setting up:
+
+ cli_open          - When your cli is done loading
+ startup_complete  - When your startup is complete
+ new_mail          - When you get new mail
+ miami_online      - When Miami has established a connection
+ miami_offline     - When Miami has hung up
+
+  To use these, the simplest way is included command "Effect," which takes 
+one argument: <ID to generate>  i.e.:
+
+   Effect >NIL: cli_open
+
+   You can also create your own IDs from toolmanager.  The port value 
+is "PLAY", the command is "id <whatever id>"
+ If you are a programmer, please generate your own IDs in your 
+programs, and if you tell me about them, I'll add them to this list.
+
+@endnode
+
+@node "Programmers" "Programmers' Corner"
+@next "Bugs"
+@prev "ids_list"
+
+ Info for Programmers, or: How to use IFX from your program
+ ----------------------------------------------------------
+
+ Accessing IFX
+ -------------
+
+   IFX currently has two access methods: An AREXX port, and a public 
+Exec Message Port.  The arexx port is called "PLAY" for compatibility 
+with UPD,  and the  Exec Port is called "IFX".
+
+      AREXX Port
+      ^^^^^^^^^^
+
+   The AREXX port accepts the following commands:
+
+   ID <ID TO PLAY>   - Play the specified ID
+   FILE <FILENAME>   - Play the specified SOUND file
+   PREFS             - Reload preferences (when they are updated)
+
+   AREXX messages will also be parsed as if they were lines in an ids file,
+so you can add ids and actions and stuff if you want.
+
+   A zero return indicates success.
+
+      EXEC Port
+      ^^^^^^^^^
+
+   The Exec port takes messages of the following format:
+
+   In C:                      In E:
+   struct ifx_msg {           OBJECT ifx_msg OF mn
+      message mn;               cmd   :LONG
+      long cmd;                 id    :PTR TO CHAR
+      char *id;                 data  :LONG
+      long data;              ENDOBJECT
+      };
+
+   The calls to use it would look like:
+   Forbid();                  Forbid()
+   port = FindPort("IFX");    port := FindPort('IFX')
+   PutMsg(port, mymsg);       PutMsg(port, mymsg)
+   Permit();                  Permit()
+
+   If you want to use a reply port (now optional), you would then wait for 
+the replied message.
+
+   Filling in the message:
+   ^^^^^^^^^^^^^^^^^^^^^^^
+
+   Set cmd to 0 if you want a reply, or -1 if you want IFX to de-allocate 
+the message for you.  The -1 value is for "quick-n-dirty" message sending. 
+Please note that the mesage MUST have been allocated using AllocMem(), or 
+IFX will crash when it tries to de-allocate it.
+
+   If you set the replyport to a valid port, and cmd to 0, then IFX will 
+reply your message AFTER starting the sound or executing the command line.
+
+   Full Source
+   ^^^^^^^^^^^
+
+   For more commands and info, look in the AmigaE directory 
+(included) for the full E source for IFX, so you can know inside and out
+the interface; you could even add some stuff yourself.  Just tell me
+beforehand, and I'll make sure you get the lastest tweaked version of IFX.e,
+and then stop development until you are done, and then I'll work with the
+changed version.
+
+
+@endnode
+
+@node "Bugs" "Bugs"
+@next "Disclaimer"
+@prev "Programmers"
+
+         IFX Preferences
+         ---------------
+
+ Bugs & Problems
+ ---------------
+
+ - is not very nice to use
+ - does not support "CONFIG" or "CHIMES"
+ - does not support prefs files other than "s:IFX.ids"
+ - crashes occasionally
+
+         IFX Commodity
+         -------------
+ Bugs
+ ----
+   - Someone reported a crash when cut and pasting in the Shell, but it
+     disappeared.
+
+ Todo
+ ----
+
+   - Your suggestions will be incorporated, if possible.
+   - Add DELAY opion to .ids file (Not soon, sorry)
+   - Add MODULE (play a mod.*) to .ids file
+   - Add MUI gui.  (sigh) This was requested.
+
+ History
+ -------
+   - 2.38 Added cycles option in .ids file
+   - 2.38 Added Sound Commenter
+   - 2.38 Fixed bug in Effect that I stupidly caused.
+   - 2.37 Added VOLUME control through ENV variables
+   - 2.36 Fixed strange bug - IFX didn't always run
+   - 2.35 Added SPEECH command to parser
+   - 2.35 Added INCLUDE command to parser
+   - 2.30 Added a bunch of message commands (Look in AmigaE dir)
+   - 2.22 Fixed input handler so it doesn't crash
+   - 2.22 Added default directory option to icon
+   - 2.22 Added CHIMES command to parser
+   - 2.21 Fixed disk_inserted and disk_removed so they work
+   - 2.21 Fixed version info for version command
+   - 2.21 Fixed up IFX.guide to look better
+   - 2.20 Fixed hourly_chime: will now chime the hour (optional)
+   - 2.12 First user registered
+   - 2.12 fixed timer events bug
+   - 2.11 fixed "window_resize" that works.
+   - 2.1  added chimes and preloaded sounds.  Also, a new "message"
+          capability is offered.
+   - 2.1  now has the command "file," which plays the sound file that
+          follows (for UPD compatibility.)
+   - 2.1  now accepts commands in its config file, and configuration
+          in its AREX port.  The parser now functions exacly the same
+          for both.
+@endnode
+
+@node "Disclaimer" "Disclaimer"
+@next "Author"
+@prev "Bugs"
+
+ Disclaimer
+ ----------
+
+   I herebye take no responsibility for any damages directly or 
+indirectly caused by this program or any other item included in this 
+package.  I will not be held legally liable for ANYTHING this program 
+does.
+
+ Copyright
+ ---------
+
+   IFX is Copyright © 1997 by Dobes Vandermeer, all rights reserved.
+   I wrote this, so don't put your name on it and re-release it.
+
+ Distribution
+ ------------
+
+   IFX must always be distributed with at least the executable "IFX", 
+and the documentation "IFX.guide".  The documentation must not be 
+tampered with in any shape or form, and I must be given credit for 
+all parts of the program.  If you find a file where somebody else is 
+taking credit for the creation and/orcoding of IFX, they are 
+committing fraud.  If there are any special cases, I will list them 
+here.  Please note that when I say IFX, I am not referring to 
+ImageFX, which is made by someone else.
+
+
+@endnode
+
+@node "Author" "Author"
+@next "Main"
+@prev "Disclaimer"
+
+ Author
+ ------
+
+   I can be reached at:                    My E-Mail address is:
+                                            dobes@deathsdoor.com
+   Dobes Vandermeer                      
+   205-45-4th street
+   New Westminster, BC                     
+   Canada                                   
+   V3L 5H7
+
+  FIND THE OFFICIAL IFX HOME PAGE at:
+
+  http://deathsdoor.com/dobes
+
+  Commendations, Love Letters, Signature Requests, etc.:
+      Please send them to me!  I love it!  My wholepurpose in writing 
+this program was to become famous!  if it doesn't make me famous, 
+then I'll probsbly bail out soon.  I's love to see something you've 
+made.
+
+  Bug Reports:
+
+      When sending bug reports, please include as much information as 
+      you can, especially:
+
+   - Guru-number(s)  (8000 0004)
+   - Guru-task addr. (3B65 32A4)
+   - OS version (1.2, 1.3, 1.4, 2.0, 2.04, 2.1, 3.0, 3.1)
+   - CPU (68xxx or PowerPC xxx)
+   - Computer (500, 1000, 2000, 3000, 4000, 600, 1200)
+
+@endnode
+
+@node "Installation" "Installation"
+
+ Installation
+ ------------
+
+   Just use the provided Commodore Installer script.
+
+   If that doesn't work for some reason, copy IFX and its icon to your 
+WBStartup drawer and this documentation wherever you like.  Then copy
+the preferences program and its icon to your Prefs directory.
+
+   Note that the installer script will not intall the point-and-click 
+preferences editor.  You will have to do this yourself, by dragging 
+its icon from the "prefs" folder to the prefs folder on your 
+workbench drive.
+
+   Also note that the IFX package does not come with any example 
+sounds or comfiguration.  YOu will have to download these yourself.  
+You will find them in mods/smpl on AmiNet, as IFX_Big.lha and 
+IFX_Small.lha.  You can also download any more sounds I may have 
+found at my Web Page (http://deathsdoor.com/dobes).
+
+@endnode
+
+@node "Registration" "Registration"
+
+
+   IFX Registration
+   ----------------
+
+   IFX is now just E-Mailware.  If you use and like IFX, please send me 
+E-Mail, and I will add you to my statistics.  If you think IFX stinks, 
+it is even more imperative that you send me E-Mail and tell me all about 
+it.
+   When you send mail, please tell me what OS, CPU, and boards you 
+have, as well as any aoftware you might have running that conflicts 
+with IFX.
+
+   Infamy (how famous is IFX?)
+   ------
+
+   There are currently 27 registered users
+   There have been 12 bug reports
+   * For random IFX themes, you can get RASP, © by Carl Harrison
+   * The Volume knob for IFX was provided by Francis Labrie
+
+   CU
+
+   Fame for you
+   ------------
+
+   Written something cool that uses/affects IFX?  Tell me about it, 
+and I'll add to my list, so everybody will download it, and probably 
+register it.  (You never know...)
+
+@endnode
+

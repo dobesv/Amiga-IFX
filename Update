@@ -1,0 +1,78 @@
+; IFX V2.00
+;
+
+;START
+
+(welcome "About to install\nIFX v2.1\n(input effects)\n\n© Dobes Vandermeer\n")
+(set @app-name "IFX")
+(set @default-dest "SYS:")
+(if (askbool
+      (prompt "Okay to copy\nexecutable to dir\nSYS:WBStartup?")
+      (help "Press yes to copy,\nno to select another dir.")
+      (default 1)
+      )
+   (set #bindir "SYS:WBStartup")
+   (set #bindir 
+      (askdir
+         (prompt "Select directory for executable.\n")
+         (help "Since you didn't want\nto install to the\ndefault directory,\nPlease select another.\n" 
+               "(NIL: will send it all to hell)")
+         (default "SYS:Tools/Commodities")
+         )
+      )
+   )
+   
+(copyfiles 
+   (prompt "Copying executable to:\n" #bindir)
+   (help "Make sure all boxes are checked, \nand select proceed.")
+   (source "")
+   (choices "IFX" "IFX.info")
+   (dest #bindir)
+   )
+
+(complete 25)
+
+(complete 48)
+(if (askbool
+      (prompt "Okay to copy\n\"IFXNote\" command to dir\nSYS:Utilities?")
+      (help "This utility adds a comment to every\nsoundfile that is an\nIFX id, allowing you to\nquickly determine which sound files are in use.")
+      (default 1)
+      )
+   (set #comdir "SYS:Utilities")
+   (set #comdir
+      (askdir
+         (prompt "Select directory for executable.\n")
+         (help "Since you didn't want\nto install to the\ndefault directory,\nPlease select"
+               "another.\n")
+         (default "SYS:Utilities")
+         )
+      )
+   )
+
+(copyfiles
+   (source "")
+   (pattern "(IFXNote|IFXNote.info)")
+   (dest #comdir)
+   )
+ 
+(complete 66)
+(set #docdir
+   (askdir
+      (prompt "Where would you like me\nto install the documentation?")
+      (help "Find the directory where\nyou would like\ntosave the amigaguide\ndocumentation, and press\nProceed.\n")
+      (default "SYS:Docs")
+      )
+   )
+
+(copyfiles
+   (source "")
+   (pattern "IFX.guide#?")
+   (dest #docdir)
+   )
+
+(complete 100)
+
+(exit "Installation of IFX complete.\n\nPlease reboot to test IFX.\n\nDocumentation can be found \nin " #docdir " and the \nexecutable is in " #bindir " and the prefs editor is in\n" #prefsdir 
+"\n\nlook out for sounds sets from the same place you got IFX!\n"
+(quiet))
+

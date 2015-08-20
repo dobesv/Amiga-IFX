@@ -1,0 +1,78 @@
+/* Application created by MUIBuild */
+
+IF ~SHOW('LIBRARY', 'rexxdossupport.library') THEN
+   CALL ADDLIB("rexxdossupport.library", 0, -30, 0)
+
+address Volume
+
+FALSE = 0
+TRUE = 1
+MUIA_Application_Author = 0x80424842
+MUIA_Application_Copyright = 0x8042ef4d
+MUIA_Application_Description = 0x80421fc6
+MUIA_Application_OpenConfigWindow = 0x804299ba
+MUIA_Application_Title = 0x804281b8
+MUIA_Application_Version = 0x8042b33f
+MUIA_Background  = 0x8042545b
+MUIA_ControlChar = 0x8042120b
+MUIA_Frame = 0x8042ac64
+MUIA_Text_HiChar = 0x804218ff
+MUIA_InnerBottom = 0x8042f2c0
+MUIA_InnerLeft = 0x804228f8
+MUIA_InnerRight = 0x804297ff
+MUIA_InnerTop = 0x80421eb6
+MUIA_Menuitem_Checked = 0x8042562a
+MUIA_Menuitem_Checkit = 0x80425ace
+MUIA_Menuitem_Shortcut = 0x80422030
+MUIA_Menuitem_Title = 0x804218be
+MUIA_Slider_Level = 0x8042ae3a
+MUIA_Slider_Max = 0x8042d78a
+MUIA_Slider_Min = 0x8042e404
+MUIA_Window_Backdrop = 0x8042c0bb
+MUIA_Window_Borderless = 0x80429b79
+MUIA_Window_CloseGadget = 0x8042a110
+MUIA_Window_DepthGadget = 0x80421923
+MUIA_Window_DragBar = 0x8042045d
+MUIA_Window_LeftEdge = 0x80426c65
+MUIA_Window_Open = 0x80428aa0
+MUIA_Window_SizeGadget = 0x8042e33d
+MUIA_Window_Title = 0x8042ad3d
+MUIA_Window_TopEdge = 0x80427c66
+MUIA_Window_ID = 0x804201bd
+MUII_TextBack = 4
+MUII_WindowBack = 0
+MUIV_Frame_None  = 0
+MUIV_Frame_ImageButton = 2
+MUIV_Frame_Text = 3
+MUIV_Window_LeftEdge = 408
+MUIV_Window_TopEdge = 4000
+
+application ATTRS MUIA_Application_Author "Francis Labrie" MUIA_Application_Copyright "© 1997 Francis Labrie" MUIA_Application_Description "Outil de contrôle du volume sonore" MUIA_Application_Version "1.0" MUIA_Application_Title "Volume"
+window ID VOLUME ATTRS MUIA_Window_Borderless TRUE MUIA_Window_CloseGadget FALSE MUIA_Window_DepthGadget FALSE MUIA_Window_DragBar FALSE MUIA_Window_SizeGadget FALSE MUIA_InnerTop 0 MUIA_InnerLeft 0 MUIA_InnerRight 0 MUIA_InnerBottom 0
+ menu LABEL "Volume"
+  item COMMAND """window ID ABOUT ATTRS "MUIA_Window_Open TRUE"""" PORT Volume ATTRS MUIA_Menuitem_Shortcut '?' LABEL "About..."
+  item ATTRS MUIA_Menuitem_Title '-1'
+  item COMMAND """Copy FROM ENV:Volume TO ENVARC:""" PORT COMMAND ATTRS MUIA_Menuitem_Shortcut 'S' LABEL "Save"
+  item COMMAND """QUIT""" PORT Volume ATTRS MUIA_Menuitem_Shortcut 'Q' LABEL "Quit"
+ endmenu
+ menu LABEL "Settings"
+  item COMMAND """method "MUIA_Application_OpenConfigWindow"""" PORT Volume ATTRS MUIA_Menuitem_Shortcut 'M' LABEL "MUI..."
+ endmenu
+ group ATTRS MUIA_Frame MUIV_Frame_ImageButton MUIA_InnerBottom 4 MUIA_InnerLeft 12 MUIA_InnerRight 13 MUIA_InnerTop 4
+  knob COMMAND """SETENV Volume %s""" PORT COMMAND HELP """\033cThis knob let you adjust\nthe global volume.""" ATTRS MUIA_Slider_Min 0 MUIA_Slider_Max 64 MUIA_Slider_Level GETVAR('Volume','GLOBAL')
+ endgroup
+endwindow
+
+window ID ABOUT COMMAND """window ID ABOUT ATTRS "MUIA_Window_Open FALSE"""" PORT Volume ATTRS MUIA_Window_Title "About..." MUIA_Window_SizeGadget FALSE
+ group HORIZ ATTRS MUIA_Background MUII_TextBack MUIA_Frame MUIV_Frame_Text
+  button PICT "Volume.info" TRANS ATTRS MUIA_Background MUII_TextBack MUIA_Frame MUIV_Frame_None
+  text ATTRS MUIA_Background MUII_TextBack MUIA_Frame MUIV_Frame_None LABEL "\n\033bVolume V1.0\033n\n\n© Copyrights 1997 Francis Labrie.\n"
+ endgroup
+ group HORIZ
+  space HORIZ
+  button PRESS COMMAND """window ID ABOUT ATTRS "MUIA_Window_Open FALSE"""" PORT Volume ATTRS MUIA_Text_HiChar C2D("O") MUIA_ControlChar C2D("o") LABEL "Ok"
+  space HORIZ
+ endgroup
+endwindow
+
+window ID ABOUT ATTRS MUIA_Window_Open FALSE
